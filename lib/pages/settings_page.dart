@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/drawer.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() {
@@ -21,6 +22,8 @@ class SettingsPage extends StatelessWidget {
     final theme = ShadTheme.of(context);
 
     return Scaffold(
+      appBar: AppBar(),
+      drawer: const DrawerComponent(),
       body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 350),

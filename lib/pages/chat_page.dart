@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/drawer.dart';
 
 class ChatPage extends StatelessWidget {
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:1060000237.
@@ -10,6 +11,8 @@ class ChatPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Chat'),
       ),
+
+      drawer: const DrawerComponent(),
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
