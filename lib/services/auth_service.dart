@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:myapp/services/chat_service.dart';
+import 'package:myapp/models/user_model.dart' as user_model;
 
 class AuthService {
   // initialize
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final ChatService chatService  = ChatService();
 
   // sign in
   Future<UserCredential> signIn(String email, String password) async {
@@ -11,20 +15,39 @@ class AuthService {
         email: email,
         password: password,
       );
+
+      // store user in firestore
+      final user = userCredential.user;
+      if (user == null) {
+        throw Exception('User is null');
+      }
+
+      // check if user exists if not add user
+      // hmmm, is this the most resonable way to do this?
+      // perhaps user, may be added on the backend if there is one
+      if (!(await chatService.isUser(user.uid))){
+        await chatService.addUser(user_model.User(id: user.uid, name: user.displayName!, email: user.email!));
+      }
+
       return userCredential;
-    } on FirebaseAuthException catch (e) {
+    } catch (e) {
       throw Exception(e);
     }
   }
+
   // register
   Future<UserCredential> register(String email, String password) async {
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:505930389.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:4058371523.
     try {
       final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+
+      // store user in firestore
+      final user = userCredential.user;
+      if (user != null) {
+        await chatService.addUser(user_model.User(id: user.uid, name: user.displayName!, email: user.email!));
+      }
       return userCredential;
     } on FirebaseAuthException catch (e) {
       throw Exception(e);
@@ -32,7 +55,7 @@ class AuthService {
   } 
   // sign out
   Future<void> signOut() async {
-    return await _auth.signOut();
+    await _auth.signOut();
   }
 
   // sign out

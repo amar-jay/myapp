@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShadApp.material(
       debugShowCheckedModeBanner: false,
-      darkTheme: ShadThemeData(colorScheme: const ShadBlueColorScheme.dark(), brightness: Brightness.dark),
+      darkTheme: ShadThemeData(colorScheme: const ShadRedColorScheme.dark(), brightness: Brightness.dark),
       home: const AuthGate(),
       materialThemeBuilder: (context, theme) {
         return theme.copyWith(

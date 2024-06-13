@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/chat_page.dart';
+import 'package:myapp/pages/login_page.dart';
 import 'package:myapp/services/auth_service.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -47,9 +48,9 @@ class _RegisterPageState extends State<RegisterPage> {
       
     }
     _login() {
-      return const RegisterPage();
+  // navigate to register page
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
     }
-
   @override
   Widget build(BuildContext context) {
     final theme = ShadTheme.of(context);
