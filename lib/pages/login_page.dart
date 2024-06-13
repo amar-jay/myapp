@@ -14,7 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 class _LoginPageState extends State<LoginPage> {
  bool obscure = true;
- bool? _loggedIn;
  String? _errorMessage;
   
   final TextEditingController _emailController = TextEditingController();
@@ -29,24 +28,19 @@ class _LoginPageState extends State<LoginPage> {
 
   _submit(BuildContext context) async {
     AuthService authService = AuthService();
-    UserCredential? credentials;
 
     try {
-        credentials = await authService.signIn(_emailController.text, _passwordController.text);
-    } on FirebaseAuthException catch (e) {
+        UserCredential credentials = await authService.signIn(_emailController.text, _passwordController.text);
+
+        if (credentials.credential == null) {
+          setState(() {
+            _errorMessage = "Error logging in";
+          });
+          return;
+        }
+    } catch (e) {
       setState(() {
-        showDialog(
-          context: context, 
-          builder: (context) => AlertDialog(
-            title: Text(e.toString()))
-          );
-        _errorMessage = e.toString();
-      });
-    }
-    
-    if (credentials != null) {
-      setState(() {
-       _loggedIn = true;
+        _errorMessage = authService.formatErrorMessage(e.toString());
       });
     }
   }
@@ -71,7 +65,6 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardType: TextInputType.emailAddress,
                 ),
           ),
-          Text('${_emailController.text} --- ${_passwordController.text}'),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 320),
               
@@ -126,11 +119,8 @@ class _LoginPageState extends State<LoginPage> {
               child: ShadAlert.destructive(
                 iconSrc: LucideIcons.circleAlert, 
                 title: const Text('Error'), 
-                description: Text('$_errorMessage...')
+                description: Text(_errorMessage!)
                 )): Container(),
-       
-    _loggedIn == true ? const Text('Logged in! Hurray 🥳') : Container(),
-     
         ],
       )),
       );

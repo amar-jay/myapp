@@ -17,7 +17,7 @@ class AuthService {
     }
   }
   // register
-  Future<UserCredential> Register(String email, String password) async {
+  Future<UserCredential> register(String email, String password) async {
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:505930389.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:4058371523.
     try {
@@ -38,4 +38,15 @@ class AuthService {
   // sign out
 
   //... boooring....
+  /* Firebase errors are in the format 
+    Exception: [firebase_auth/invalid-email] The email address is badly formatted.
+    split and take message only
+  */
+  String formatErrorMessage(String message) {
+      List<String> parts = message.split("] ");
+      if (parts.length >= 2) {
+        message = parts[1];
+      }
+      return message;
+  }
 }
