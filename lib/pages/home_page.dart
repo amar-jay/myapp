@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/components/drawer.dart';
 import 'package:myapp/pages/settings_page.dart';
 import 'package:myapp/services/auth_service.dart';
 
@@ -22,7 +23,8 @@ class HomePage extends StatelessWidget {
             }, 
             icon: const Icon(Icons.logout),
           ),
-      ])
+      ]),
+      drawer: const DrawerComponent(),
       );
   }
 }
