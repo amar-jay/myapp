@@ -20,7 +20,9 @@ class _WeatherPageState extends State<WeatherPage> {
   Weather? weather;
 
   String city = "";
-  String lottieName = "sunny";
+  double tempreture = 0;
+  String description = "";
+  String lottieName = "cloudy";
 
   fetchWeather() {
     weatherService.getCityName().then((value) {
@@ -31,7 +33,9 @@ class _WeatherPageState extends State<WeatherPage> {
     }).then(
       (value) => weatherService.fetchWeather(city).then((value) {
         setState(() {
-          weather = value;
+          tempreture = value.tempreture;
+          description = value.description;
+          // weather = value;
         });
       }),
     );
@@ -66,20 +70,21 @@ class _WeatherPageState extends State<WeatherPage> {
               style: theme.textTheme.h2
             ),
             const SizedBox(height: 20),
-            Lottie.asset('assets/lottie/$lottieName.json'),
+            Lottie.asset('assets/lottie/${selectLottie(weather?.description ?? "Loading")}.json'),
             const SizedBox(height: 30),
+
             Text(
-              'City: ${weather?.city ?? "Loading"}',
+              description,
+              style: theme.textTheme.h2
+            ),
+            Text(
+              'City: ${city == "" ? "Lading": city}',
               style: theme.textTheme.p
             ),
             Text(
-              'Temperature: ${weather?.temperature ?? "Loading"}',
+              'Temperature: $tempreture',
               style: theme.textTheme.p
             ),
-            Text(
-              'Description: ${weather?.description ?? "Loading"}',
-              style: theme.textTheme.p
-            )
           ],
         )
       ),

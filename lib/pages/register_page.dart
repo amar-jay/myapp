@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/pages/chat_page.dart';
+import 'package:myapp/pages/home_page.dart';
 import 'package:myapp/pages/login_page.dart';
 import 'package:myapp/services/auth_service.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3223400663.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:20092009.
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -23,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _errorMessage;
     toHome() {
       Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatPage()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
     }
 
     _submit(BuildContext context) async {

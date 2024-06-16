@@ -1,9 +1,10 @@
 class User {
   final String id;
-  final String name;
+  String name;
   final String email;
+  bool isLoggedIn;
 
-  User({required this.id, required this.name, required this.email});
+  User({required this.id, required this.name, required this.email, required this.isLoggedIn});
 
   // json to object
   factory User.fromJson(Map<String, dynamic> json) {
@@ -11,6 +12,7 @@ class User {
       id: json['id'],
       name: json['name'],
       email: json['email'],
+      isLoggedIn: json['isLoggedIn'],
     );
   }
 
@@ -20,6 +22,7 @@ class User {
       'id': id,
       'name': name,
       'email': email,
+      'isLoggedIn': isLoggedIn
     };
   }
 }

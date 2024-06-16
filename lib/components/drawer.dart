@@ -1,6 +1,7 @@
 // flutter drawer component
 import 'package:flutter/material.dart';
-import 'package:myapp/pages/chat_page.dart';
+import 'package:myapp/pages/about.dart';
+// import 'package:myapp/pages/chat_page.dart';
 import 'package:myapp/pages/home_page.dart';
 import 'package:myapp/pages/login_page.dart';
 import 'package:myapp/pages/settings_page.dart';
@@ -10,9 +11,10 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 const pages = {
   'Home': HomePage(),
-  'Chat': ChatPage(),
+  // 'Chat': ChatPage(),
   'Settings': SettingsPage(),
   'Weather': WeatherPage(),
+  'About': AboutPage(),
 };
 
 const pagesIcons = {
@@ -20,6 +22,7 @@ const pagesIcons = {
   'Chat': Icons.chat,
   'Settings': Icons.settings,
   'Weather': Icons.cloud,
+  'About': Icons.info,
 };
 
 class DrawerComponent extends StatelessWidget {

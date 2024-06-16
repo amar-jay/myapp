@@ -1,6 +1,7 @@
 // import "package:flutter/cupertino.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
+import "package:myapp/pages/home_page.dart";
 import "package:myapp/pages/register_page.dart";
 import "package:myapp/services/auth_service.dart";
 // import "package:flutter/widgets.dart";
@@ -26,18 +27,25 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
   }
 
+    toHome() {
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+    }
+
   _submit(BuildContext context) async {
     AuthService authService = AuthService();
 
     try {
         UserCredential credentials = await authService.signIn(_emailController.text, _passwordController.text);
 
-        if (credentials.credential == null) {
+        if (credentials.user == null) {
           setState(() {
             _errorMessage = "Error logging in";
           });
           return;
         }
+      toHome();
+    
     } catch (e) {
       setState(() {
         _errorMessage = authService.formatErrorMessage(e.toString());
