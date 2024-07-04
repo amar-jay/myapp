@@ -14,6 +14,7 @@ class _QrcodeComponentState extends State<QrcodeComponent> {
 
   @override
   Widget build(BuildContext context) {
+    
     final theme = ShadTheme.of(context);
 
     

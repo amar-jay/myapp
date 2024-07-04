@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/components/drawer.dart';
 import 'package:myapp/components/qr_code.dart';
-import "package:shadcn_ui/shadcn_ui.dart";
 
 class QrcodePage extends StatefulWidget {
   
@@ -17,7 +16,7 @@ class _QrcodePageState extends State<QrcodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Qr Code'),
+        title: const Text('Qr Code Reader'),
       ),
 
       drawer: const DrawerComponent(),

@@ -7,12 +7,14 @@ import 'package:myapp/pages/login_page.dart';
 import 'package:myapp/pages/settings_page.dart';
 import 'package:myapp/pages/weather_page.dart';
 import 'package:myapp/pages/qrcode_page.dart';
+import 'package:myapp/pages/qr_page.dart';
 import 'package:myapp/services/auth_service.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 const pages = {
   'Home': HomePage(),
   'QrCode': QrcodePage(),
+  'QrScanner': QrscannerPage(),
   // 'Chat': ChatPage(),
   'Settings': SettingsPage(),
   'Weather': WeatherPage(),
@@ -22,6 +24,9 @@ const pages = {
 const pagesIcons = {
   'Home': Icons.home,
   'Chat': Icons.chat,
+  'QrCode': Icons.qr_code,
+  'QrScanner': Icons.qr_code_scanner,
+  // 'Chat': 'chat'
   'Settings': Icons.settings,
   'Weather': Icons.cloud,
   'About': Icons.info,
