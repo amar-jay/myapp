@@ -4,7 +4,6 @@ import 'package:myapp/models/user_model.dart';
 import 'package:myapp/pages/about.dart';
 import 'package:myapp/pages/chat_page.dart';
 import 'package:myapp/pages/settings_page.dart';
-import 'package:myapp/services/auth_service.dart';
 import 'package:myapp/services/chat_service.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 

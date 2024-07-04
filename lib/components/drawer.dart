@@ -6,11 +6,13 @@ import 'package:myapp/pages/home_page.dart';
 import 'package:myapp/pages/login_page.dart';
 import 'package:myapp/pages/settings_page.dart';
 import 'package:myapp/pages/weather_page.dart';
+import 'package:myapp/pages/qrcode_page.dart';
 import 'package:myapp/services/auth_service.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 const pages = {
   'Home': HomePage(),
+  'QrCode': QrcodePage(),
   // 'Chat': ChatPage(),
   'Settings': SettingsPage(),
   'Weather': WeatherPage(),
